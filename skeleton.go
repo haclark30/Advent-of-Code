@@ -1,6 +1,9 @@
 package main
 
-import "os"
+import (
+	"os"
+	"strings"
+)
 
 func checkErr(e error) {
 	if e != nil {
@@ -8,10 +11,10 @@ func checkErr(e error) {
 	}
 }
 
-func readInput() string {
+func readInput() []string {
 	input, err := os.ReadFile("input")
 	checkErr(err)
-	return string(input)
+	return strings.Split(string(input), "\n")
 }
 
 func part1() {
