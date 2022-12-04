@@ -20,23 +20,12 @@ func readInput() []string {
 }
 
 func checkRangesStrict(range1 []int, range2 []int) bool {
-	rangeDiff1 := range1[1] - range1[0]
-	rangeDiff2 := range2[1] - range2[0]
+	start1, end1 := range1[0], range1[1]
+	start2, end2 := range2[0], range2[1]
 
-	if rangeDiff1 < rangeDiff2 {
-		if range1[0] >= range2[0] && range1[1] <= range2[1] {
-			return true
-		}
-	} else if rangeDiff2 < rangeDiff1 {
-		if range2[0] >= range1[0] && range2[1] <= range1[1] {
-			return true
-		}
-	} else if rangeDiff1 == rangeDiff2 {
-		if range1[0] == range2[0] {
-			return true
-		}
+	if (start1 <= start2 && end1 >= end2) || (start2 <= start1 && end2 >= end1) {
+		return true
 	}
-
 	return false
 }
 
@@ -58,6 +47,7 @@ func checkRangesOverlap(range1 []int, range2 []int) bool {
 	lowerBound := max(range1[0], range2[0])
 	upperBound := min(range1[1], range2[1])
 	return lowerBound <= upperBound
+
 }
 
 func rangeStrToInt(rangeStr string) []int {
