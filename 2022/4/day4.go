@@ -57,9 +57,6 @@ func min(a, b int) int {
 func checkRangesOverlap(range1 []int, range2 []int) bool {
 	lowerBound := max(range1[0], range2[0])
 	upperBound := min(range1[1], range2[1])
-	if lowerBound <= upperBound {
-		return true
-	}
 	return lowerBound <= upperBound
 }
 
