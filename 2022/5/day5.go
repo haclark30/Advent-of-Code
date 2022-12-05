@@ -2,22 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/haclark30/Advent-of-Code/utils"
 )
-
-func checkErr(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func readInput() []string {
-	input, err := os.ReadFile("input")
-	checkErr(err)
-	return strings.Split(string(input), "\n")
-}
 
 func buildStacks(input []string) [][]byte {
 	var rows [][]byte
@@ -55,11 +44,11 @@ func createMoves(input []string) [][]int {
 		if strings.HasPrefix(row, "move") {
 			rowSplit := strings.Split(row, " ")
 			move1, err := strconv.Atoi(rowSplit[1])
-			checkErr(err)
+			utils.CheckErr(err)
 			move2, err := strconv.Atoi(rowSplit[3])
-			checkErr(err)
+			utils.CheckErr(err)
 			move3, err := strconv.Atoi(rowSplit[5])
-			checkErr(err)
+			utils.CheckErr(err)
 			move := []int{move1, move2, move3}
 			moves = append(moves, move)
 		}
@@ -113,7 +102,7 @@ func part2(stacks [][]byte, moves [][]int) {
 }
 
 func main() {
-	input := readInput()
+	input := utils.ReadInput()
 	stacks := buildStacks(input)
 	moves := createMoves(input)
 	part1(stacks, moves)

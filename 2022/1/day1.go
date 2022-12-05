@@ -5,6 +5,8 @@ import (
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/haclark30/Advent-of-Code/utils"
 )
 
 func checkErr(e error) {
@@ -63,7 +65,7 @@ func findTopThreeTotal(elfs []string) int {
 
 func main() {
 	input, err := os.ReadFile("input")
-	checkErr(err)
+	utils.CheckErr(err)
 	inputStr := string(input)
 	elfSplit := strings.Split(inputStr, "\n\n")
 

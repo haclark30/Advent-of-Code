@@ -2,21 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strings"
+
+	"github.com/haclark30/Advent-of-Code/utils"
 )
-
-func checkErr(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func readInput() string {
-	input, err := os.ReadFile("input")
-	checkErr(err)
-	return string(input)
-}
 
 func scoreGame(player1 string, player2 string, scoreMap map[string]int, winLoseMap map[string]map[string]int) int {
 	playerScore := scoreMap[player1]
@@ -30,7 +19,7 @@ func scoreGame(player1 string, player2 string, scoreMap map[string]int, winLoseM
 	return playerScore + winLoseMap[player1][player2]
 }
 
-func part1(input string) int {
+func part1(input []string) int {
 	totalScore := 0
 	scoreMap := makeScoreMap()
 
@@ -40,9 +29,8 @@ func part1(input string) int {
 	moveMap := makeMoveMap()
 	winLoseMap := makeWinLoseMap()
 
-	gameList := strings.Split(input, "\n")
-	for i := 0; i < len(gameList); i++ {
-		gameSplit := strings.Split(gameList[i], " ")
+	for i := 0; i < len(input); i++ {
+		gameSplit := strings.Split(input[i], " ")
 		player1 := moveMap[gameSplit[1]]
 		player2 := moveMap[gameSplit[0]]
 		totalScore += scoreGame(player1, player2, scoreMap, winLoseMap)
@@ -113,15 +101,14 @@ func makeScoreMap() map[string]int {
 	return scoreMap
 }
 
-func part2(input string) int {
+func part2(input []string) int {
 	totalScore := 0
 	moveMap := makeMoveMap()
 	scoreMap := makeScoreMap()
 	winLoseMap := makeWinLoseMap()
 
-	gameList := strings.Split(input, "\n")
-	for i := 0; i < len(gameList); i++ {
-		gameSplit := strings.Split(gameList[i], " ")
+	for i := 0; i < len(input); i++ {
+		gameSplit := strings.Split(input[i], " ")
 		player2 := moveMap[gameSplit[0]]
 		player1 := findIdealMove(player2, gameSplit[1])
 		totalScore += scoreGame(player1, player2, scoreMap, winLoseMap)
@@ -130,7 +117,7 @@ func part2(input string) int {
 }
 
 func main() {
-	input := readInput()
+	input := utils.ReadInput()
 	part1_ans := part1(input)
 	part2_ans := part2(input)
 	fmt.Println(part1_ans)

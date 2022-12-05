@@ -2,21 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strings"
+
+	"github.com/haclark30/Advent-of-Code/utils"
 )
-
-func checkErr(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func readInput() []string {
-	input, err := os.ReadFile("input")
-	checkErr(err)
-	return strings.Split(string(input), "\n")
-}
 
 func letterToValue(c byte) int {
 	intVal := int(c)
@@ -96,7 +84,7 @@ func part2(input []string) int {
 }
 
 func main() {
-	input := readInput()
+	input := utils.ReadInput()
 	fmt.Println(part1(input))
 	fmt.Println(part2(input))
 }

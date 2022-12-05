@@ -2,22 +2,11 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/haclark30/Advent-of-Code/utils"
 )
-
-func checkErr(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
-func readInput() []string {
-	input, err := os.ReadFile("input")
-	checkErr(err)
-	return strings.Split(string(input), "\n")
-}
 
 func checkRangesStrict(range1 []int, range2 []int) bool {
 	start1, end1 := range1[0], range1[1]
@@ -54,9 +43,9 @@ func rangeStrToInt(rangeStr string) []int {
 	rangeInt := make([]int, 2)
 	rangeSlice := strings.Split(rangeStr, "-")
 	lower, err := strconv.Atoi(rangeSlice[0])
-	checkErr(err)
+	utils.CheckErr(err)
 	upper, err := strconv.Atoi(rangeSlice[1])
-	checkErr(err)
+	utils.CheckErr(err)
 	rangeInt[0] = lower
 	rangeInt[1] = upper
 	return rangeInt
@@ -91,7 +80,7 @@ func part2(pairs []string) int {
 }
 
 func main() {
-	input := readInput()
+	input := utils.ReadInput()
 	fmt.Println(part1(input))
 	fmt.Println(part2(input))
 }
