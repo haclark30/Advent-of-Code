@@ -14,20 +14,20 @@ func part2(datastream string) int {
 }
 
 func findStartOfPattern(datastream string, targetLen int) int {
-	charmap := make(map[byte]bool)
+	charSet := make(map[byte]bool)
 
 	for i := 0; i < len(datastream); i++ {
 		for j := 0; j <= targetLen-1; j++ {
 			char := datastream[i+j]
-			if !charmap[char] {
-				charmap[char] = true
+			if !charSet[char] {
+				charSet[char] = true
 			} else {
-				charmap = make(map[byte]bool)
+				charSet = make(map[byte]bool)
 				break
 			}
 		}
 
-		if len(charmap) == targetLen {
+		if len(charSet) == targetLen {
 			return i + targetLen
 		}
 
