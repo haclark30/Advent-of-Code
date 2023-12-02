@@ -1,3 +1,3 @@
 module github.com/haclark30/Advent-of-Code
 
-go 1.19
+go 1.21
