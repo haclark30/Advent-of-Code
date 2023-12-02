@@ -14,5 +14,6 @@ func CheckErr(e error) {
 func ReadInput() []string {
 	input, err := os.ReadFile("input")
 	CheckErr(err)
-	return strings.Split(string(input), "\n")
+	ret := strings.Split(string(input), "\n")
+	return ret[:len(ret)-1]
 }
